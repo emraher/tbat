@@ -5,7 +5,6 @@
 #'
 #' @examples
 #'
-#'
 #' \dontrun{
 #' dt <- periods_financial()
 #' }
@@ -14,9 +13,10 @@
 #'
 periods_financial <- function() {
   periods <- httr::POST("https://verisistemi.tbb.org.tr/api/router",
-                        body = '{"route":"donemler"}',
-                        httr::add_headers("LANG" = "tr", "ID" = "null"),
-                        httr::accept_json()) %>%
+    body = '{"route":"donemler"}',
+    httr::add_headers("LANG" = "tr", "ID" = "null"),
+    httr::accept_json()
+  ) %>%
     httr::content("text") %>%
     jsonlite::fromJSON() %>%
     dplyr::select(.data$YIL, .data$AY, tidyselect::everything()) %>%

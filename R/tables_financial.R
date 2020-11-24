@@ -8,7 +8,6 @@
 #'
 #' @examples
 #'
-#'
 #' \dontrun{
 #' dt <- tables_financial()
 #' }
@@ -16,7 +15,6 @@
 #' @export
 #'
 tables_financial <- function(bank_code, periods = NULL) {
-
   if (!is.null(periods)) {
     periods <- paste(periods, collapse = ", ")
   } else {
@@ -25,14 +23,17 @@ tables_financial <- function(bank_code, periods = NULL) {
 
   bank_code_body <- paste(bank_code, collapse = ", ")
 
-  request_body <- paste0('{"route":"maliTablolar","donemler":[', periods,
-                         '],"bankalar":[',
-                         bank_code_body, ']}')
+  request_body <- paste0(
+    '{"route":"maliTablolar","donemler":[', periods,
+    '],"bankalar":[',
+    bank_code_body, "]}"
+  )
 
   tables <- httr::POST("https://verisistemi.tbb.org.tr/api/router",
-                       body = request_body,
-                       httr::add_headers("LANG" = "tr", "ID" = "null"),
-                       httr::accept_json()) %>%
+    body = request_body,
+    httr::add_headers("LANG" = "tr", "ID" = "null"),
+    httr::accept_json()
+  ) %>%
     httr::content("text") %>%
     jsonlite::fromJSON() %>%
     janitor::clean_names() %>%

@@ -18,7 +18,6 @@
 #'
 
 data_region <- function(years = NULL, regions = NULL, parameters = NULL) {
-
   url <- "https://verisistemi.tbb.org.tr/api/router"
 
   if (!is.null(years)) {
@@ -39,15 +38,18 @@ data_region <- function(years = NULL, regions = NULL, parameters = NULL) {
     parameters <- ""
   }
 
-  request_body <- paste0('{"route":"blgDegerler","paramYillar":[', years,
-                         '],"paramBolgeler":[', regions,
-                         '],"paramParametreler":[', parameters,
-                         ']}')
+  request_body <- paste0(
+    '{"route":"blgDegerler","paramYillar":[', years,
+    '],"paramBolgeler":[', regions,
+    '],"paramParametreler":[', parameters,
+    "]}"
+  )
 
   http_response <- httr::POST(url,
-                             body = request_body,
-                             httr::add_headers("LANG" = "tr", "ID" = "null"),
-                             httr::accept_json())
+    body = request_body,
+    httr::add_headers("LANG" = "tr", "ID" = "null"),
+    httr::accept_json()
+  )
 
   dat <- jsonlite::fromJSON(httr::content(http_response, "text")) %>%
     janitor::clean_names()
@@ -55,10 +57,13 @@ data_region <- function(years = NULL, regions = NULL, parameters = NULL) {
   params <- params_region()
 
   dat <- dplyr::left_join(dat, params,
-                          by = c("il_bolge_key", "parametre_uk", "unique_key")) %>%
-    dplyr::select(.data$yil, .data$tr_adi, .data$en_adi, .data$parametre,
-                  .data$parametre_en, .data$toplam, .data$tp_deger,
-                  .data$yp_deger, tidyselect::everything()) %>%
+    by = c("il_bolge_key", "parametre_uk", "unique_key")
+  ) %>%
+    dplyr::select(
+      .data$yil, .data$tr_adi, .data$en_adi, .data$parametre,
+      .data$parametre_en, .data$toplam, .data$tp_deger,
+      .data$yp_deger, tidyselect::everything()
+    ) %>%
     dplyr::arrange(.data$yil, .data$tr_adi, .data$parametre) %>%
     janitor::clean_names() %>%
     tibble::as_tibble()

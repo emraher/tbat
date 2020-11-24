@@ -5,7 +5,6 @@
 #'
 #' @examples
 #'
-#'
 #' \dontrun{
 #' dt <- groups_financial()
 #' }
@@ -14,9 +13,10 @@
 #'
 groups_financial <- function() {
   groups <- httr::POST("https://verisistemi.tbb.org.tr/api/router",
-                       body = '{"route":"bankaGruplari","donemler":[],"maliTablolar":[]}',
-                       httr::add_headers("LANG" = "tr", "ID" = "null"),
-                       httr::accept_json()) %>%
+    body = '{"route":"bankaGruplari","donemler":[],"maliTablolar":[]}',
+    httr::add_headers("LANG" = "tr", "ID" = "null"),
+    httr::accept_json()
+  ) %>%
     httr::content("text") %>%
     jsonlite::fromJSON() %>%
     janitor::clean_names() %>%

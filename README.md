@@ -420,3 +420,10 @@ There are 4 functions in this section.
 #> Error in data_financial(periods = c(1477300252), tables = c(2087), banks = c(3),  : 
 #> Cannot select both banks and groups at the same time. I'm working on this and will fix it soon!
 ```
+
+## Code of Conduct
+
+Please note that the tbat project is released with a [Contributor Code
+of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

@@ -5,7 +5,6 @@
 #'
 #' @examples
 #'
-#'
 #' \dontrun{
 #' dt <- banks_financial()
 #' }
@@ -14,9 +13,10 @@
 #'
 banks_financial <- function() {
   banks <- httr::POST("https://verisistemi.tbb.org.tr/api/router",
-                      body = '{"route":"bankalar","donemler":[],"maliTablolar":[]}',
-                      httr::add_headers("LANG" = "tr", "ID" = "null"),
-                      httr::accept_json()) %>%
+    body = '{"route":"bankalar","donemler":[],"maliTablolar":[]}',
+    httr::add_headers("LANG" = "tr", "ID" = "null"),
+    httr::accept_json()
+  ) %>%
     httr::content("text") %>%
     jsonlite::fromJSON() %>%
     dplyr::select(.data$TR_ADI, .data$BANKA_KODU) %>%

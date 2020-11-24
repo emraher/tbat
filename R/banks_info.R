@@ -19,18 +19,20 @@ banks_info <- function(date = format(Sys.time(), "%d/%m/%Y")) {
   doc <- url %>%
     xml2::read_html()
 
-  to_drop <- c("The Banking System in Turkey",
-               "Deposit Banks",
-               "State-owned Deposit Banks",
-               "Privately-owned Deposit Banks",
-               "Banks Under the Deposit Insurance Fund",
-               "Foreign Banks",
-               "Foreign Banks Founded in Turkey",
-               "Foreign Banks Having Branches in Turkey",
-               "Development and Investment Banks",
-               "State-owned Development and Investment Banks",
-               "Privately-owned Development and Investment Banks",
-               "Foreign Development and Investment Banks")
+  to_drop <- c(
+    "The Banking System in Turkey",
+    "Deposit Banks",
+    "State-owned Deposit Banks",
+    "Privately-owned Deposit Banks",
+    "Banks Under the Deposit Insurance Fund",
+    "Foreign Banks",
+    "Foreign Banks Founded in Turkey",
+    "Foreign Banks Having Branches in Turkey",
+    "Development and Investment Banks",
+    "State-owned Development and Investment Banks",
+    "Privately-owned Development and Investment Banks",
+    "Foreign Development and Investment Banks"
+  )
 
   "%not_in%" <- function(x, y) !("%in%"(x, y))
 
