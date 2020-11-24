@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build
+status](https://github.com/emraher/tbat/workflows/R-CMD-check/badge.svg)](https://github.com/emraher/tbat/actions)
 <!-- badges: end -->
 
 The goal of `tbat` is to download data from The Banks Association of
@@ -159,13 +161,13 @@ There are 2 functions in this section.
 #> # A tibble: 60 x 4
 #>    bank_group_name                         banks branches_in_turkey branches_abroad
 #>    <chr>                                   <dbl>              <int>           <int>
-#>  1 The Banking System in Turkey               48               9944              71
-#>  2 Deposit Banks                              34               9882              71
-#>  3 State-owned Deposit Banks                   3               3674              33
+#>  1 The Banking System in Turkey               48               9938              71
+#>  2 Deposit Banks                              34               9876              71
+#>  3 State-owned Deposit Banks                   3               3673              33
 #>  4 Türkiye Cumhuriyeti Ziraat Bankası A.Ş.    NA               1734              24
 #>  5 Türkiye Halk Bankası A.Ş.                  NA               1006               6
-#>  6 Türkiye Vakıflar Bankası T.A.O.            NA                934               3
-#>  7 Privately-owned Deposit Banks               9               3658              28
+#>  6 Türkiye Vakıflar Bankası T.A.O.            NA                933               3
+#>  7 Privately-owned Deposit Banks               9               3656              28
 #>  8 Adabank A.Ş.                               NA                  1               0
 #>  9 Akbank T.A.Ş.                              NA                716               1
 #> 10 Anadolubank A.Ş.                           NA                114               0
@@ -271,20 +273,20 @@ myperiods <- periodsRisk %>%
 
 (dataRisk <- data_risk(categories = mycategories,
                       periods = myperiods))
-#> # A tibble: 243 x 18
+#> # A tibble: 244 x 18
 #>    donem   yil ay    uk_rapor rapor_adi rapor_adi_en uk_kategori kategori kategori_en
 #>    <chr> <int> <chr>    <int> <chr>     <chr>              <int> <chr>    <chr>      
-#>  1 2017…  2017 Hazi…   6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      
-#>  2 2016…  2016 Ekim    6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      
-#>  3 2020…  2020 Ocak    6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      
-#>  4 2016…  2016 Ekim    6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   
-#>  5 2017…  2017 Hazi…   6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   
-#>  6 2020…  2020 Ocak    6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   
-#>  7 2016…  2016 Ekim    6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…
-#>  8 2020…  2020 Ocak    6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…
-#>  9 2017…  2017 Hazi…   6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…
-#> 10 2017…  2017 Hazi…   6.21e8 "Bankala… Distributio…  1646672514 Ağrı     Ağrı       
-#> # … with 233 more rows, and 9 more variables: alt_kategori_1 <chr>,
+#>  1 2018…  2018 Ocak    6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      
+#>  2 2019…  2019 Aral…   6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      
+#>  3 2009…  2009 Eylül   6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      
+#>  4 2019…  2019 Aral…   6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   
+#>  5 2018…  2018 Ocak    6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   
+#>  6 2009…  2009 Eylül   6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   
+#>  7 2018…  2018 Ocak    6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…
+#>  8 2009…  2009 Eylül   6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…
+#>  9 2019…  2019 Aral…   6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…
+#> 10 2018…  2018 Ocak    6.21e8 "Bankala… Distributio…  1646672514 Ağrı     Ağrı       
+#> # … with 234 more rows, and 9 more variables: alt_kategori_1 <chr>,
 #> #   alt_kategori_1_en <chr>, alt_kategori_2 <chr>, alt_kategori_2_en <chr>,
 #> #   tutar <dbl>, adet <int>, tekil_kisi_sayisi <int>, donem_order <int>,
 #> #   unique_key <int>
