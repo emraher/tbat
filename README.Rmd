@@ -1,0 +1,195 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  cache = TRUE
+)
+```
+
+# tbat
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+The goal of `tbat` is to download data from The Banks Association of Turkey webpage. The webpage has a Data Query System but has no public API. `tbat` uses POST requests to download data programmatically.
+
+## Installation
+
+You can install the development version of tbat from [Github](https://github.com/emraher/tbat) with:
+
+``` r
+devtool::install_github("emraher/tbat")
+```
+
+## Usage
+
+### Regional Data
+
+There are 3 functions in this section.
+
+- `years_region()`: Requires no inputs. Returns available years.
+
+- `params_region()`: Requires no inputs. Returns parameter and region codes.
+
+- `data_region(years = NULL, regions = NULL, parameters = NULL)`: Inputs are optional. Returns regional data.
+
+
+```{r}
+library(tbat)
+        
+(df <- params_region())
+
+summary(years_region())
+```
+
+If no input argument is given, the function downloads all regional data. It may take some time to download all data. 
+
+You can define `years`, `regions`, and/or `parameters`. To check available years, regions, and parameters first run `years_region()` and/or `params_region()`.
+
+- `regions` are codes from `il_bolge_key` column of `params_region()` result.
+
+- `parameters` are codes from `parametre_uk` column of `params_region()` result.
+
+
+
+```{r}
+(df <- data_region(years = 2018:2019, 
+                   regions = c("-363956677", "1965766610"), 
+                   parameters = c("4978", "11978")))
+```
+
+
+### Historical Data
+
+There are 2 functions in this section.
+
+- `bank_hist()`: Requires no inputs. Returns historical information about banks.
+
+- `gm_hist()`: Requires no inputs. Returns historical information about managers.
+
+```{r}
+(bankHist <- bank_hist())
+
+(gmHist <- gm_hist())
+```
+
+
+### Current Infomation Data
+
+There are 2 functions in this section.
+
+- `banks_summary()`: Requires no inputs. Returns number of currently operating banks and branches.
+
+- `banks_info(date = format(Sys.time(), "%d/%m/%Y"))`: `date` is optional. If date (should be in DD/MM/YYYY format) is given returns info for the given date. Returns contact and information about banks.
+
+```{r}
+(bankSum <- banks_summary())
+
+(bankInfo <- banks_info())
+```
+
+### Risk Center Data
+
+There are 3 functions in this section.
+
+- `periods_risk()`: Requires no inputs. Returns available periods.
+
+- `categories_risk()`: Requires no inputs. Returns parameter codes.
+
+- `data_risk(categories = NULL, periods = NULL)`: Inputs are optional. Returns risk data.
+
+To check available periods and categories first run `periods_risk()` and/or `categories_risk()`.
+
+- `periods` are codes from `DONEM` column of `periods_risk()` result.
+
+- `categories` are codes from `uk_kategori` column of `categories_risk()` result.
+
+
+```{r}
+(periodsRisk <- periods_risk())
+
+(categoriesRisk <- categories_risk())
+
+(dataRisk <- data_risk(categories = c(-285334560, 2008209749, 949943133),
+                       periods = c("2014-08", "2019-12")))
+
+# -------------------------------------------------------------------------- ###
+# Another Example using data from categoriesRisk and periodsRisk
+# -------------------------------------------------------------------------- ###
+
+mycategories <- categoriesRisk %>% 
+  dplyr::filter(uk_rapor == 621177206) %>% 
+  dplyr::select(uk_kategori) %>% 
+  unlist()
+
+myperiods <- periodsRisk %>% 
+  dplyr::slice_sample(n = 3) %>% 
+  unlist()
+
+(dataRisk <- data_risk(categories = mycategories,
+                      periods = myperiods))
+```
+
+
+### Financial Tables Data
+
+There are 4 functions in this section.
+
+- `periods_financial()`: Requires no inputs. Returns available periods.
+
+- `banks_financial()`: Requires no inputs. Returns bank codes.
+
+- `groups_financial()`: Requires no inputs. Returns bank group codes.
+
+- `tables_financial(bank_code, periods = NULL)`: Returns table codes.
+
+- `data_financial(periods, tables, banks = NULL, groups = NULL)`: Returns financial tables data. At least a bank or bank group must be chosen. 
+
+    -  `periods`: Period codes from `periods_financial()` **key** column
+    
+    -  `tables`: Table codes from `tables_financial()` **unique_key** column
+    
+    -  `banks`: Bank codes from `banks_financial()` **banka_kodu** column
+    
+    -  `groups`: Group codes from `groups_financial()` **grup_no** column
+
+```{r}
+(periodsFinancial <- periods_financial())
+
+(banksFinancial <- banks_financial())
+
+(groupsFinancial <- groups_financial())
+
+(tablesFinancial <- tables_financial(bank_code = c(3, 5)))
+
+(dataFinancial <- data_financial(periods = c(1477300252),
+                                 tables = c(2086),
+                                 banks = c(3)))
+
+
+(dataFinancial2 <- data_financial(periods = c(1477300252),
+                                  tables = c(2087),
+                                  groups = c(1)))
+```
+
+
+```{r, eval=FALSE}
+(dataFinancial3 <- data_financial(periods = c(1477300252),
+                                  tables = c(2087),
+                                  banks = c(3),
+                                  groups = c(1)))
+
+#> Error in data_financial(periods = c(1477300252), tables = c(2087), banks = c(3),  : 
+#> Cannot select both banks and groups at the same time. I'm working on this and will fix it soon!
+
+```
+

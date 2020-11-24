@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+docs
+README_cache/*
+README_cache/gfm/*
+funcs/*
