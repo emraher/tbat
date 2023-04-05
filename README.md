@@ -58,13 +58,13 @@ library(tbat)
 #> #   ³​parametre_en, ⁴​parametre_uk, ⁵​order_no
 
 summary(years_region())
-#>   timestamp             status       error             message              path          
-#>  Length:1           Min.   :500   Length:1           Length:1           Length:1          
-#>  Class :character   1st Qu.:500   Class :character   Class :character   Class :character  
-#>  Mode  :character   Median :500   Mode  :character   Mode  :character   Mode  :character  
-#>                     Mean   :500                                                           
-#>                     3rd Qu.:500                                                           
-#>                     Max.   :500
+#>       yil      
+#>  Min.   :1988  
+#>  1st Qu.:1996  
+#>  Median :2004  
+#>  Mean   :2004  
+#>  3rd Qu.:2013  
+#>  Max.   :2021
 ```
 
 If no input argument is given, the function downloads all regional data.
