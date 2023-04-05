@@ -21,6 +21,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,26 +35,20 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tbat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/emraher/tbat/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/emraher/tbat/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -68,59 +64,58 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="tbat" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#tbat" class="anchor"></a>tbat</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="tbat">tbat<a class="anchor" aria-label="anchor" href="#tbat"></a>
+</h1></div>
 <!-- badges: start -->
-
 <p>The goal of <code>tbat</code> is to download data from The Banks Association of Turkey webpage. The webpage has a Data Query System but has no public API. <code>tbat</code> uses POST requests to download data programmatically.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the development version of tbat from <a href="https://github.com/emraher/tbat">Github</a> with:</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of tbat from <a href="https://github.com/emraher/tbat" class="external-link">Github</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtool</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"emraher/tbat"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"emraher/tbat"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<div id="regional-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#regional-data" class="anchor"></a>Regional Data</h3>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<div class="section level3">
+<h3 id="regional-data">Regional Data<a class="anchor" aria-label="anchor" href="#regional-data"></a>
+</h3>
 <p>There are 3 functions in this section.</p>
 <ul>
 <li><p><code><a href="reference/years_region.html">years_region()</a></code>: Requires no inputs. Returns available years.</p></li>
 <li><p><code><a href="reference/params_region.html">params_region()</a></code>: Requires no inputs. Returns parameter and region codes.</p></li>
-<li><p><code><a href="reference/data_region.html">data_region(years = NULL, regions = NULL, parameters = NULL)</a></code>: Inputs are optional. Returns regional data.</p></li>
+<li><p><code>data_region(years = NULL, regions = NULL, parameters = NULL)</code>: Inputs are optional. Returns regional data.</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/emraher/tbat">tbat</a></span><span class="op">)</span>
-        
-<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/params_region.html">params_region</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2,592 x 12</span>
-<span class="co">#&gt;    unique_key tr_adi en_adi il_bolge_key parametre parametre_en parametre_uk plaka</span>
-<span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;               &lt;int&gt; &lt;lis&gt;</span>
-<span class="co">#&gt;  1     2.39e7 Ağrı   Ağrı        2216061 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  2     1.30e9 Amasya Amasya   1964562694 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  3     1.59e9 Antal… Antal…    817529530 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  4    -1.96e9 Bilec… Bilec…   1554609317 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  5    -1.16e9 Hakka… Hakka…  -1940082817 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  6     2.44e8 Ispar… Ispar…   -532918332 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  7     2.40e7 Kars   Kars        2331191 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  8     9.39e8 Kasta… Kasta…   1531408083 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt;  9    -1.39e9 Kırık… Kırık…   -798661739 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt; 10    -1.02e9 Malat… Malat…  -1796887629 Çalışan … Number of E…         4978 &lt;int…</span>
-<span class="co">#&gt; # … with 2,582 more rows, and 4 more variables: isbolge &lt;lgl&gt;, il_kodu &lt;int&gt;,</span>
-<span class="co">#&gt; #   order_no &lt;int&gt;, birim &lt;chr&gt;</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="reference/years_region.html">years_region</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;       yil      </span>
-<span class="co">#&gt;  Min.   :1988  </span>
-<span class="co">#&gt;  1st Qu.:1996  </span>
-<span class="co">#&gt;  Median :2004  </span>
-<span class="co">#&gt;  Mean   :2004  </span>
-<span class="co">#&gt;  3rd Qu.:2011  </span>
-<span class="co">#&gt;  Max.   :2019</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/emraher/tbat" class="external-link">tbat</a></span><span class="op">)</span></span>
+<span>        </span>
+<span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/params_region.html">params_region</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2,592 × 12</span></span>
+<span><span class="co">#&gt;     unique_key tr_adi  en_adi il_bo…¹ param…² param…³ param…⁴ plaka isbolge il_kodu order…⁵ birim</span></span>
+<span><span class="co">#&gt;          &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;lis&gt; &lt;lgl&gt;     &lt;int&gt;   &lt;int&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1    23867638 Ağrı    Agri    2.22e6 Çalışa… Number…    4978 &lt;int&gt; FALSE        10       1 M    </span></span>
+<span><span class="co">#&gt;  2  1296891711 Amasya  Amasya  1.96e9 Çalışa… Number…    4978 &lt;int&gt; FALSE        12       1 M    </span></span>
+<span><span class="co">#&gt;  3  1594565537 Antalya Antal…  8.18e8 Çalışa… Number…    4978 &lt;int&gt; FALSE        14       1 M    </span></span>
+<span><span class="co">#&gt;  4 -1963321972 Bilecik Bilec…  1.55e9 Çalışa… Number…    4978 &lt;int&gt; FALSE        18       1 M    </span></span>
+<span><span class="co">#&gt;  5 -1163046810 Hakkari Hakka… -1.94e9 Çalışa… Number…    4978 &lt;int&gt; FALSE        41       1 M    </span></span>
+<span><span class="co">#&gt;  6   244117675 Isparta Ispar… -5.33e8 Çalışa… Number…    4978 &lt;int&gt; FALSE        44       1 M    </span></span>
+<span><span class="co">#&gt;  7    23982768 Kars    Kars    2.33e6 Çalışa… Number…    4978 &lt;int&gt; FALSE        49       1 M    </span></span>
+<span><span class="co">#&gt;  8   938701306 Kastam… Kasta…  1.53e9 Çalışa… Number…    4978 &lt;int&gt; FALSE        50       1 M    </span></span>
+<span><span class="co">#&gt;  9 -1391368516 Kırıkk… Kirik… -7.99e8 Çalışa… Number…    4978 &lt;int&gt; FALSE        52       1 M    </span></span>
+<span><span class="co">#&gt; 10 -1019851622 Malatya Malat… -1.80e9 Çalışa… Number…    4978 &lt;int&gt; FALSE        58       1 M    </span></span>
+<span><span class="co">#&gt; # … with 2,582 more rows, and abbreviated variable names ¹​il_bolge_key, ²​parametre,</span></span>
+<span><span class="co">#&gt; #   ³​parametre_en, ⁴​parametre_uk, ⁵​order_no</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="reference/years_region.html">years_region</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   timestamp             status       error             message              path          </span></span>
+<span><span class="co">#&gt;  Length:1           Min.   :500   Length:1           Length:1           Length:1          </span></span>
+<span><span class="co">#&gt;  Class :character   1st Qu.:500   Class :character   Class :character   Class :character  </span></span>
+<span><span class="co">#&gt;  Mode  :character   Median :500   Mode  :character   Mode  :character   Mode  :character  </span></span>
+<span><span class="co">#&gt;                     Mean   :500                                                           </span></span>
+<span><span class="co">#&gt;                     3rd Qu.:500                                                           </span></span>
+<span><span class="co">#&gt;                     Max.   :500</span></span></code></pre></div>
 <p>If no input argument is given, the function downloads all regional data. It may take some time to download all data.</p>
 <p>You can define <code>years</code>, <code>regions</code>, and/or <code>parameters</code>. To check available years, regions, and parameters first run <code><a href="reference/years_region.html">years_region()</a></code> and/or <code><a href="reference/params_region.html">params_region()</a></code>.</p>
 <ul>
@@ -128,113 +123,114 @@
 <li><p><code>parameters</code> are codes from <code>parametre_uk</code> column of <code><a href="reference/params_region.html">params_region()</a></code> result.</p></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_region.html">data_region</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2018</span><span class="op">:</span><span class="fl">2019</span>, 
-                   regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-363956677"</span>, <span class="st">"1965766610"</span><span class="op">)</span>, 
-                   parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"4978"</span>, <span class="st">"11978"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 8 x 17</span>
-<span class="co">#&gt;     yil tr_adi en_adi parametre parametre_en toplam tp_deger yp_deger il_bolge_key</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;        &lt;int&gt;</span>
-<span class="co">#&gt; 1  2018 Ankara Ankara ATM Sayı… Number of A…   4193     4193        0   1965766610</span>
-<span class="co">#&gt; 2  2018 Ankara Ankara Çalışan … Number of E…  17732    17732        0   1965766610</span>
-<span class="co">#&gt; 3  2018 İstan… İstan… ATM Sayı… Number of A…  11823    11823        0   -363956677</span>
-<span class="co">#&gt; 4  2018 İstan… İstan… Çalışan … Number of E…  82945    82945        0   -363956677</span>
-<span class="co">#&gt; 5  2019 Ankara Ankara ATM Sayı… Number of A…   4142     4142        0   1965766610</span>
-<span class="co">#&gt; 6  2019 Ankara Ankara Çalışan … Number of E…  16888    16888        0   1965766610</span>
-<span class="co">#&gt; 7  2019 İstan… İstan… ATM Sayı… Number of A…  11933    11933        0   -363956677</span>
-<span class="co">#&gt; 8  2019 İstan… İstan… Çalışan … Number of E…  82315    82315        0   -363956677</span>
-<span class="co">#&gt; # … with 8 more variables: parametre_uk &lt;int&gt;, key &lt;int&gt;, unique_key &lt;int&gt;,</span>
-<span class="co">#&gt; #   plaka &lt;list&gt;, isbolge &lt;lgl&gt;, il_kodu &lt;int&gt;, order_no &lt;int&gt;, birim &lt;chr&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_region.html">data_region</a></span><span class="op">(</span>years <span class="op">=</span> <span class="fl">2018</span><span class="op">:</span><span class="fl">2019</span>, </span>
+<span>                   regions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"-363956677"</span>, <span class="st">"1965766610"</span><span class="op">)</span>, </span>
+<span>                   parameters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4978"</span>, <span class="st">"11978"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 17</span></span>
+<span><span class="co">#&gt;     yil tr_adi   en_adi   parame…¹ param…² toplam tp_de…³ yp_de…⁴ il_bo…⁵ param…⁶     key uniqu…⁷</span></span>
+<span><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  2018 Ankara   Ankara   ATM Say… Number…   4193    4193       0  1.97e9   11978 -7.65e8  1.29e8</span></span>
+<span><span class="co">#&gt; 2  2018 Ankara   Ankara   Çalışan… Number…  17732   17732       0  1.97e9    4978 -1.12e9  1.30e9</span></span>
+<span><span class="co">#&gt; 3  2018 İstanbul Istanbul ATM Say… Number…  11823   11823       0 -3.64e8   11978 -5.89e8 -1.68e8</span></span>
+<span><span class="co">#&gt; 4  2018 İstanbul Istanbul Çalışan… Number…  82945   82945       0 -3.64e8    4978 -2.37e8 -2.05e9</span></span>
+<span><span class="co">#&gt; 5  2019 Ankara   Ankara   ATM Say… Number…   4142    4142       0  1.97e9   11978 -7.65e8  1.29e8</span></span>
+<span><span class="co">#&gt; 6  2019 Ankara   Ankara   Çalışan… Number…  16888   16888       0  1.97e9    4978 -1.12e9  1.30e9</span></span>
+<span><span class="co">#&gt; 7  2019 İstanbul Istanbul ATM Say… Number…  11933   11933       0 -3.64e8   11978 -5.89e8 -1.68e8</span></span>
+<span><span class="co">#&gt; 8  2019 İstanbul Istanbul Çalışan… Number…  82315   82315       0 -3.64e8    4978 -2.37e8 -2.05e9</span></span>
+<span><span class="co">#&gt; # … with 5 more variables: plaka &lt;list&gt;, isbolge &lt;lgl&gt;, il_kodu &lt;int&gt;, order_no &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   birim &lt;chr&gt;, and abbreviated variable names ¹​parametre, ²​parametre_en, ³​tp_deger, ⁴​yp_deger,</span></span>
+<span><span class="co">#&gt; #   ⁵​il_bolge_key, ⁶​parametre_uk, ⁷​unique_key</span></span></code></pre></div>
 </div>
-<div id="historical-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#historical-data" class="anchor"></a>Historical Data</h3>
+<div class="section level3">
+<h3 id="historical-data">Historical Data<a class="anchor" aria-label="anchor" href="#historical-data"></a>
+</h3>
 <p>There are 2 functions in this section.</p>
 <ul>
 <li><p><code><a href="reference/bank_hist.html">bank_hist()</a></code>: Requires no inputs. Returns historical information about banks.</p></li>
 <li><p><code><a href="reference/gm_hist.html">gm_hist()</a></code>: Requires no inputs. Returns historical information about managers.</p></li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">bankHist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bank_hist.html">bank_hist</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 125 x 3</span>
-<span class="co">#&gt;    bank                   establish_year historical_data                                </span>
-<span class="co">#&gt;    &lt;chr&gt;                  &lt;chr&gt;          &lt;chr&gt;                                          </span>
-<span class="co">#&gt;  1 Adabank A.Ş.           1985           "BRSB decided to follow up this bank according…</span>
-<span class="co">#&gt;  2 Akbank T.A.Ş.          1948           "\"Akbank T.A.Ş. was founded in Adana in 30 Ja…</span>
-<span class="co">#&gt;  3 Aktif Yatırım Bankası… 1999           "\"Çalık Yatırım Bankası A.Ş.\", which is a su…</span>
-<span class="co">#&gt;  4 Alternatifbank A.Ş.    1992           "Alternatif Bank A.Ş. was founded in 24 Februa…</span>
-<span class="co">#&gt;  5 Anadolubank A.Ş.       1996           "Anadolubank A.Ş.,  which is a subsidiary comp…</span>
-<span class="co">#&gt;  6 Arap Türk Bankası A.Ş. 1977           "Arap Türk Bankası A.Ş. was founded in 18 July…</span>
-<span class="co">#&gt;  7 Bank Mellat            1984           "Bank Mellat  was founded as a foreign bank ha…</span>
-<span class="co">#&gt;  8 Bank of China Turkey … 2016           "Bank of China Limited was founded according t…</span>
-<span class="co">#&gt;  9 BankPozitif Kredi ve … 1999           "\"Toprak Yatırım Bankası A.Ş.\" was founded i…</span>
-<span class="co">#&gt; 10 Birleşik Fon Bankası … 1958           "Çaybank A.Ş. was founded as a local bank in 1…</span>
-<span class="co">#&gt; # … with 115 more rows</span>
-
-<span class="op">(</span><span class="va">gmHist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gm_hist.html">gm_hist</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6,006 x 5</span>
-<span class="co">#&gt;    bank         closed closed_date  year gm   </span>
-<span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span>
-<span class="co">#&gt;  1 Adabank A.Ş.      0          NA  1962 &lt;NA&gt; </span>
-<span class="co">#&gt;  2 Adabank A.Ş.      0          NA  1963 &lt;NA&gt; </span>
-<span class="co">#&gt;  3 Adabank A.Ş.      0          NA  1964 &lt;NA&gt; </span>
-<span class="co">#&gt;  4 Adabank A.Ş.      0          NA  1965 &lt;NA&gt; </span>
-<span class="co">#&gt;  5 Adabank A.Ş.      0          NA  1966 &lt;NA&gt; </span>
-<span class="co">#&gt;  6 Adabank A.Ş.      0          NA  1967 &lt;NA&gt; </span>
-<span class="co">#&gt;  7 Adabank A.Ş.      0          NA  1968 &lt;NA&gt; </span>
-<span class="co">#&gt;  8 Adabank A.Ş.      0          NA  1969 &lt;NA&gt; </span>
-<span class="co">#&gt;  9 Adabank A.Ş.      0          NA  1970 &lt;NA&gt; </span>
-<span class="co">#&gt; 10 Adabank A.Ş.      0          NA  1971 &lt;NA&gt; </span>
-<span class="co">#&gt; # … with 5,996 more rows</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">bankHist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bank_hist.html">bank_hist</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 127 × 3</span></span>
+<span><span class="co">#&gt;    bank                                       establish_year historical_data                     </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                                      &lt;chr&gt;          &lt;chr&gt;                               </span></span>
+<span><span class="co">#&gt;  1 Adabank A.Ş.                               1985           "BRSB decided to follow up this ban…</span></span>
+<span><span class="co">#&gt;  2 Akbank T.A.Ş.                              1948           "\"Akbank T.A.Ş. was founded in Ada…</span></span>
+<span><span class="co">#&gt;  3 Aktif Yatırım Bankası A.Ş.                 1999           "\"Çalık Yatırım Bankası A.Ş.\", wh…</span></span>
+<span><span class="co">#&gt;  4 Alternatifbank A.Ş.                        1992           "Alternatif Bank A.Ş. was founded i…</span></span>
+<span><span class="co">#&gt;  5 Anadolubank A.Ş.                           1997           "During the privatization process o…</span></span>
+<span><span class="co">#&gt;  6 Arap Türk Bankası A.Ş.                     1977           "Arap Türk Bankası A.Ş. was founded…</span></span>
+<span><span class="co">#&gt;  7 Bank Mellat                                1984           "Bank Mellat  was founded as a fore…</span></span>
+<span><span class="co">#&gt;  8 Bank of America Yatırım Bank A.Ş.          1992           "\"Tat Yatırım Bankası A.Ş.\" was f…</span></span>
+<span><span class="co">#&gt;  9 Bank of China Turkey A.Ş.                  2016           "Bank of China Limited was founded …</span></span>
+<span><span class="co">#&gt; 10 BankPozitif Kredi ve Kalkınma Bankası A.Ş. 1999           "\"Toprak Yatırım Bankası A.Ş.\" wa…</span></span>
+<span><span class="co">#&gt; # … with 117 more rows</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">gmHist</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gm_hist.html">gm_hist</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6,239 × 5</span></span>
+<span><span class="co">#&gt;    bank         closed closed_date  year gm   </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1 Adabank A.Ş.      0          NA  1962 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  2 Adabank A.Ş.      0          NA  1963 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  3 Adabank A.Ş.      0          NA  1964 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  4 Adabank A.Ş.      0          NA  1965 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  5 Adabank A.Ş.      0          NA  1966 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  6 Adabank A.Ş.      0          NA  1967 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  7 Adabank A.Ş.      0          NA  1968 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  8 Adabank A.Ş.      0          NA  1969 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  9 Adabank A.Ş.      0          NA  1970 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 10 Adabank A.Ş.      0          NA  1971 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; # … with 6,229 more rows</span></span></code></pre></div>
 </div>
-<div id="current-infomation-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#current-infomation-data" class="anchor"></a>Current Infomation Data</h3>
+<div class="section level3">
+<h3 id="current-infomation-data">Current Infomation Data<a class="anchor" aria-label="anchor" href="#current-infomation-data"></a>
+</h3>
 <p>There are 2 functions in this section.</p>
 <ul>
 <li><p><code><a href="reference/banks_summary.html">banks_summary()</a></code>: Requires no inputs. Returns number of currently operating banks and branches.</p></li>
-<li><p><code><a href="reference/banks_info.html">banks_info(date = format(Sys.time(), "%d/%m/%Y"))</a></code>: <code>date</code> is optional. If date (should be in DD/MM/YYYY format) is given returns info for the given date. Returns contact and information about banks.</p></li>
+<li><p><code>banks_info(date = format(Sys.time(), "%d/%m/%Y"))</code>: <code>date</code> is optional. If date (should be in DD/MM/YYYY format) is given returns info for the given date. Returns contact and information about banks.</p></li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">bankSum</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/banks_summary.html">banks_summary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 60 x 4</span>
-<span class="co">#&gt;    bank_group_name                         banks branches_in_turkey branches_abroad</span>
-<span class="co">#&gt;    &lt;chr&gt;                                   &lt;dbl&gt;              &lt;int&gt;           &lt;int&gt;</span>
-<span class="co">#&gt;  1 The Banking System in Turkey               48               9938              71</span>
-<span class="co">#&gt;  2 Deposit Banks                              34               9876              71</span>
-<span class="co">#&gt;  3 State-owned Deposit Banks                   3               3673              33</span>
-<span class="co">#&gt;  4 Türkiye Cumhuriyeti Ziraat Bankası A.Ş.    NA               1734              24</span>
-<span class="co">#&gt;  5 Türkiye Halk Bankası A.Ş.                  NA               1006               6</span>
-<span class="co">#&gt;  6 Türkiye Vakıflar Bankası T.A.O.            NA                933               3</span>
-<span class="co">#&gt;  7 Privately-owned Deposit Banks               9               3656              28</span>
-<span class="co">#&gt;  8 Adabank A.Ş.                               NA                  1               0</span>
-<span class="co">#&gt;  9 Akbank T.A.Ş.                              NA                716               1</span>
-<span class="co">#&gt; 10 Anadolubank A.Ş.                           NA                114               0</span>
-<span class="co">#&gt; # … with 50 more rows</span>
-
-<span class="op">(</span><span class="va">bankInfo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/banks_info.html">banks_info</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 48 x 10</span>
-<span class="co">#&gt;    bank_name address chairman_of_the… general_manager phone fax   www   kep   eft  </span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span>
-<span class="co">#&gt;  1 Türkiye … Hacıba… Ahmet Genç       Hüseyin Aydın   312-… 312-… http… zira… 0010 </span>
-<span class="co">#&gt;  2 Türkiye … Barbar… Recep Süleyman … Osman Arslan    216-… 212-… http… halk… 0012 </span>
-<span class="co">#&gt;  3 Türkiye … Saray … Abdülkadir Aksu  Abdi Serdar Üs… 216-… 216-… http… vaki… 0015 </span>
-<span class="co">#&gt;  4 Adabank … Büyükd… Çağrı Seyfi      Metehan Özpeki… 212-… 212-… http… adab… 0100 </span>
-<span class="co">#&gt;  5 Akbank T… Sabanc… Suzan Sabancı D… S.Hakan Binbaş… 212-… 212-… http… akba… 0046 </span>
-<span class="co">#&gt;  6 Anadolub… Saray … Mehmet Rüştü Ba… Namık Ülke      216-… 216-… http… anad… 0135 </span>
-<span class="co">#&gt;  7 Fibabank… Esente… Hüsnü Mustafa Ö… Ömer Mert       212-… 212-… http… fiba… 0103 </span>
-<span class="co">#&gt;  8 Şekerban… Emniye… Hasan Basri Gök… Nariman Zharkı… 212-… 212-… http… seke… 0059 </span>
-<span class="co">#&gt;  9 Turkish … Vali K… İbrahim Hakan B… Mithat Arikan   212-… 212-… http… turk… 0096 </span>
-<span class="co">#&gt; 10 Türk Eko… Saray … Yavuz Canevi     Ümit Leblebici  216-… 216-… http… turk… 0032 </span>
-<span class="co">#&gt; # … with 38 more rows, and 1 more variable: swift &lt;chr&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">bankSum</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/banks_summary.html">banks_summary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 64 × 4</span></span>
+<span><span class="co">#&gt;    bank_group_name                         banks branches_in_turkey branches_abroad</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                                   &lt;dbl&gt;              &lt;int&gt;           &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 The Banking System in Türkiye              52               9593              72</span></span>
+<span><span class="co">#&gt;  2 Deposit Banks                              35               9521              72</span></span>
+<span><span class="co">#&gt;  3 State-owned Deposit Banks                   3               3722              35</span></span>
+<span><span class="co">#&gt;  4 Türkiye Cumhuriyeti Ziraat Bankası A.Ş.    NA               1733              25</span></span>
+<span><span class="co">#&gt;  5 Türkiye Halk Bankası A.Ş.                  NA               1044               6</span></span>
+<span><span class="co">#&gt;  6 Türkiye Vakıflar Bankası T.A.O.            NA                945               4</span></span>
+<span><span class="co">#&gt;  7 Privately-owned Deposit Banks               8               3464              27</span></span>
+<span><span class="co">#&gt;  8 Akbank T.A.Ş.                              NA                709               1</span></span>
+<span><span class="co">#&gt;  9 Anadolubank A.Ş.                           NA                116               0</span></span>
+<span><span class="co">#&gt; 10 Fibabanka A.Ş.                             NA                 44               0</span></span>
+<span><span class="co">#&gt; # … with 54 more rows</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">bankInfo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/banks_info.html">banks_info</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 55 × 10</span></span>
+<span><span class="co">#&gt;    bank_name                          address chair…¹ gener…² phone fax   www   kep   eft   swift</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                              &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1 The Banking System in Türkiye      "The B… The Ba… The Ba… The … The … The … The … The … The …</span></span>
+<span><span class="co">#&gt;  2 Türkiye Cumhuriyeti Ziraat Bankas… "Hacıb… Burhan… Alpasl… 312-… 312-… http… zira… 0010  TCZB…</span></span>
+<span><span class="co">#&gt;  3 Türkiye Halk Bankası A.Ş.          "Barba… Recep … Osman … 216-… 212-… http… halk… 0012  TRHB…</span></span>
+<span><span class="co">#&gt;  4 Türkiye Vakıflar Bankası T.A.O.    "Saray… Mustaf… Abdi S… 216-… 216-… http… vaki… 0015  TVBA…</span></span>
+<span><span class="co">#&gt;  5 Akbank T.A.Ş.                      "Saban… Suzan … Sabri … 212-… 212-… http… akba… 0046  AKBK…</span></span>
+<span><span class="co">#&gt;  6 Anadolubank A.Ş.                   "Saray… Mehmet… Namık … 216-… 216-… http… anad… 0135  ANDL…</span></span>
+<span><span class="co">#&gt;  7 Fibabanka A.Ş.                     "Esent… Hüsnü … Ömer M… 212-… 212-… http… fiba… 0103  FBHL…</span></span>
+<span><span class="co">#&gt;  8 Şekerbank T.A.Ş.                   "Emniy… Hasan … Orhan … 212-… 212-… http… seke… 0059  SEKE…</span></span>
+<span><span class="co">#&gt;  9 Turkish Bank A.Ş.                  "Esent… İbrahi… Mithat… 212-… 212-… http… turk… 0096  TUBA…</span></span>
+<span><span class="co">#&gt; 10 Türk Ekonomi Bankası A.Ş.          "Saray… Akın A… Ümit L… 216-… 216-… http… turk… 0032  TEBU…</span></span>
+<span><span class="co">#&gt; # … with 45 more rows, and abbreviated variable names ¹​chairman_of_the_board, ²​general_manager</span></span></code></pre></div>
 </div>
-<div id="risk-center-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#risk-center-data" class="anchor"></a>Risk Center Data</h3>
+<div class="section level3">
+<h3 id="risk-center-data">Risk Center Data<a class="anchor" aria-label="anchor" href="#risk-center-data"></a>
+</h3>
 <p>There are 3 functions in this section.</p>
 <ul>
 <li><p><code><a href="reference/periods_risk.html">periods_risk()</a></code>: Requires no inputs. Returns available periods.</p></li>
 <li><p><code><a href="reference/categories_risk.html">categories_risk()</a></code>: Requires no inputs. Returns parameter codes.</p></li>
-<li><p><code><a href="reference/data_risk.html">data_risk(categories = NULL, periods = NULL)</a></code>: Inputs are optional. Returns risk data.</p></li>
+<li><p><code>data_risk(categories = NULL, periods = NULL)</code>: Inputs are optional. Returns risk data.</p></li>
 </ul>
 <p>To check available periods and categories first run <code><a href="reference/periods_risk.html">periods_risk()</a></code> and/or <code><a href="reference/categories_risk.html">categories_risk()</a></code>.</p>
 <ul>
@@ -242,98 +238,79 @@
 <li><p><code>categories</code> are codes from <code>uk_kategori</code> column of <code><a href="reference/categories_risk.html">categories_risk()</a></code> result.</p></li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">periodsRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/periods_risk.html">periods_risk</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 142 x 1</span>
-<span class="co">#&gt;    DONEM  </span>
-<span class="co">#&gt;    &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 2017-10</span>
-<span class="co">#&gt;  2 2017-11</span>
-<span class="co">#&gt;  3 2012-01</span>
-<span class="co">#&gt;  4 2017-12</span>
-<span class="co">#&gt;  5 2012-04</span>
-<span class="co">#&gt;  6 2012-05</span>
-<span class="co">#&gt;  7 2012-02</span>
-<span class="co">#&gt;  8 2012-03</span>
-<span class="co">#&gt;  9 2012-08</span>
-<span class="co">#&gt; 10 2012-09</span>
-<span class="co">#&gt; # … with 132 more rows</span>
-
-<span class="op">(</span><span class="va">categoriesRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/categories_risk.html">categories_risk</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1,459 x 11</span>
-<span class="co">#&gt;    uk_rapor rapor_adi rapor_adi_en uk_kategori kategori kategori_en alt_kategori_1</span>
-<span class="co">#&gt;       &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;         </span>
-<span class="co">#&gt;  1  -1.04e9 "Bankala… Distributio…   369967857 Akdeniz  Mediterran… -             </span>
-<span class="co">#&gt;  2  -1.04e9 "Bankala… Distributio… -1651575777 Batı An… West Anato… -             </span>
-<span class="co">#&gt;  3  -1.04e9 "Bankala… Distributio…  -705182512 Batı Ka… West Black… -             </span>
-<span class="co">#&gt;  4  -1.04e9 "Bankala… Distributio…  -728856168 Batı Ma… West Marma… -             </span>
-<span class="co">#&gt;  5  -1.04e9 "Bankala… Distributio…  -523036412 Diğer    Other       -             </span>
-<span class="co">#&gt;  6  -1.04e9 "Bankala… Distributio…  2008209749 Doğu Ka… East Black… -             </span>
-<span class="co">#&gt;  7  -1.04e9 "Bankala… Distributio…   949943133 Doğu Ma… East Marma… -             </span>
-<span class="co">#&gt;  8  -1.04e9 "Bankala… Distributio…  -285334560 Ege      Aegean      -             </span>
-<span class="co">#&gt;  9  -1.04e9 "Bankala… Distributio…   631366675 Güneydo… South-East… -             </span>
-<span class="co">#&gt; 10  -1.04e9 "Bankala… Distributio…   -82262122 İstanbul İstanbul    -             </span>
-<span class="co">#&gt; # … with 1,449 more rows, and 4 more variables: alt_kategori_1_en &lt;chr&gt;,</span>
-<span class="co">#&gt; #   alt_kategori_2 &lt;chr&gt;, alt_kategori_2_en &lt;chr&gt;, unique_key &lt;int&gt;</span>
-
-<span class="op">(</span><span class="va">dataRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_risk.html">data_risk</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">285334560</span>, <span class="fl">2008209749</span>, <span class="fl">949943133</span><span class="op">)</span>,
-                       periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2014-08"</span>, <span class="st">"2019-12"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 18</span>
-<span class="co">#&gt;   donem   yil ay    uk_rapor rapor_adi rapor_adi_en uk_kategori kategori kategori_en</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;      </span>
-<span class="co">#&gt; 1 2014…  2014 Ağus…  -1.04e9 "Bankala… Distributio…  2008209749 Doğu Ka… East Black…</span>
-<span class="co">#&gt; 2 2019…  2019 Aral…  -1.04e9 "Bankala… Distributio…  2008209749 Doğu Ka… East Black…</span>
-<span class="co">#&gt; 3 2014…  2014 Ağus…  -1.04e9 "Bankala… Distributio…   949943133 Doğu Ma… East Marma…</span>
-<span class="co">#&gt; 4 2019…  2019 Aral…  -1.04e9 "Bankala… Distributio…   949943133 Doğu Ma… East Marma…</span>
-<span class="co">#&gt; 5 2019…  2019 Aral…  -1.04e9 "Bankala… Distributio…  -285334560 Ege      Aegean     </span>
-<span class="co">#&gt; 6 2014…  2014 Ağus…  -1.04e9 "Bankala… Distributio…  -285334560 Ege      Aegean     </span>
-<span class="co">#&gt; # … with 9 more variables: alt_kategori_1 &lt;chr&gt;, alt_kategori_1_en &lt;chr&gt;,</span>
-<span class="co">#&gt; #   alt_kategori_2 &lt;chr&gt;, alt_kategori_2_en &lt;chr&gt;, tutar &lt;dbl&gt;, adet &lt;int&gt;,</span>
-<span class="co">#&gt; #   tekil_kisi_sayisi &lt;int&gt;, donem_order &lt;int&gt;, unique_key &lt;int&gt;</span>
-
-<span class="co"># -------------------------------------------------------------------------- ###</span>
-<span class="co"># Another Example using data from categoriesRisk and periodsRisk</span>
-<span class="co"># -------------------------------------------------------------------------- ###</span>
-
-<span class="va">mycategories</span> <span class="op">&lt;-</span> <span class="va">categoriesRisk</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">uk_rapor</span> <span class="op">==</span> <span class="fl">621177206</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">uk_kategori</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">myperiods</span> <span class="op">&lt;-</span> <span class="va">periodsRisk</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="op">(</span><span class="va">dataRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_risk.html">data_risk</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="va">mycategories</span>,
-                      periods <span class="op">=</span> <span class="va">myperiods</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 244 x 18</span>
-<span class="co">#&gt;    donem   yil ay    uk_rapor rapor_adi rapor_adi_en uk_kategori kategori kategori_en</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;      </span>
-<span class="co">#&gt;  1 2018…  2018 Ocak    6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      </span>
-<span class="co">#&gt;  2 2019…  2019 Aral…   6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      </span>
-<span class="co">#&gt;  3 2009…  2009 Eylül   6.21e8 "Bankala… Distributio…   827101828 Adana    Adana      </span>
-<span class="co">#&gt;  4 2019…  2019 Aral…   6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   </span>
-<span class="co">#&gt;  5 2018…  2018 Ocak    6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   </span>
-<span class="co">#&gt;  6 2009…  2009 Eylül   6.21e8 "Bankala… Distributio…   380168905 Adıyaman Adıyaman   </span>
-<span class="co">#&gt;  7 2018…  2018 Ocak    6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…</span>
-<span class="co">#&gt;  8 2009…  2009 Eylül   6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…</span>
-<span class="co">#&gt;  9 2019…  2019 Aral…   6.21e8 "Bankala… Distributio… -1503599664 Afyonka… Afyonkarah…</span>
-<span class="co">#&gt; 10 2018…  2018 Ocak    6.21e8 "Bankala… Distributio…  1646672514 Ağrı     Ağrı       </span>
-<span class="co">#&gt; # … with 234 more rows, and 9 more variables: alt_kategori_1 &lt;chr&gt;,</span>
-<span class="co">#&gt; #   alt_kategori_1_en &lt;chr&gt;, alt_kategori_2 &lt;chr&gt;, alt_kategori_2_en &lt;chr&gt;,</span>
-<span class="co">#&gt; #   tutar &lt;dbl&gt;, adet &lt;int&gt;, tekil_kisi_sayisi &lt;int&gt;, donem_order &lt;int&gt;,</span>
-<span class="co">#&gt; #   unique_key &lt;int&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">periodsRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/periods_risk.html">periods_risk</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 170 × 1</span></span>
+<span><span class="co">#&gt;    DONEM  </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 2017-10</span></span>
+<span><span class="co">#&gt;  2 2017-11</span></span>
+<span><span class="co">#&gt;  3 2012-01</span></span>
+<span><span class="co">#&gt;  4 2017-12</span></span>
+<span><span class="co">#&gt;  5 2012-04</span></span>
+<span><span class="co">#&gt;  6 2012-05</span></span>
+<span><span class="co">#&gt;  7 2012-02</span></span>
+<span><span class="co">#&gt;  8 2012-03</span></span>
+<span><span class="co">#&gt;  9 2012-08</span></span>
+<span><span class="co">#&gt; 10 2012-09</span></span>
+<span><span class="co">#&gt; # … with 160 more rows</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">categoriesRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/categories_risk.html">categories_risk</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1,395 × 11</span></span>
+<span><span class="co">#&gt;      uk_rapor rapor_adi   rapor…¹ uk_ka…² kateg…³ kateg…⁴ alt_k…⁵ alt_k…⁶ alt_k…⁷ alt_k…⁸ uniqu…⁹</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1  576682514 "Bankalara… Inform…  3.96e8 Bankal… Presen… -       -       -       -        3.96e8</span></span>
+<span><span class="co">#&gt;  2  576682514 "Bankalara… Inform…  4.20e8 Karşıl… Return… -       -       -       -        4.20e8</span></span>
+<span><span class="co">#&gt;  3  576682514 "Bankalara… Inform… -8.38e8 Karşıl… Return… -       -       -       -       -8.38e8</span></span>
+<span><span class="co">#&gt;  4 -738598176 "Bankalara… Distri…  6.06e8 Akdeniz Medite… -       -       -       -        6.06e8</span></span>
+<span><span class="co">#&gt;  5 -738598176 "Bankalara… Distri…  4.07e8 Batı A… West A… -       -       -       -        4.07e8</span></span>
+<span><span class="co">#&gt;  6 -738598176 "Bankalara… Distri…  1.89e9 Batı K… West B… -       -       -       -        1.89e9</span></span>
+<span><span class="co">#&gt;  7 -738598176 "Bankalara… Distri…  1.33e9 Batı M… West M… -       -       -       -        1.33e9</span></span>
+<span><span class="co">#&gt;  8 -738598176 "Bankalara… Distri… -1.00e9 Diğer   Other   -       -       -       -       -1.00e9</span></span>
+<span><span class="co">#&gt;  9 -738598176 "Bankalara… Distri…  3.08e8 Doğu K… East B… -       -       -       -        3.08e8</span></span>
+<span><span class="co">#&gt; 10 -738598176 "Bankalara… Distri… -1.29e9 Doğu M… East M… -       -       -       -       -1.29e9</span></span>
+<span><span class="co">#&gt; # … with 1,385 more rows, and abbreviated variable names ¹​rapor_adi_en, ²​uk_kategori, ³​kategori,</span></span>
+<span><span class="co">#&gt; #   ⁴​kategori_en, ⁵​alt_kategori_1, ⁶​alt_kategori_1_en, ⁷​alt_kategori_2, ⁸​alt_kategori_2_en,</span></span>
+<span><span class="co">#&gt; #   ⁹​unique_key</span></span>
+<span></span>
+<span><span class="va">mycategories</span> <span class="op">&lt;-</span> <span class="va">categoriesRisk</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">uk_rapor</span> <span class="op">==</span> <span class="fl">576682514</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">uk_kategori</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">myperiods</span> <span class="op">&lt;-</span> <span class="va">periodsRisk</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">dataRisk</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_risk.html">data_risk</a></span><span class="op">(</span>categories <span class="op">=</span> <span class="va">mycategories</span>,</span>
+<span>                      periods <span class="op">=</span> <span class="va">myperiods</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 9 × 18</span></span>
+<span><span class="co">#&gt;   donem     yil ay      uk_rapor rapor_…¹ rapor…² uk_ka…³ kateg…⁴ kateg…⁵ alt_k…⁶ alt_k…⁷ alt_k…⁸</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt; 1 2013-09  2013 Eylül  576682514 "Bankal… Inform…  3.96e8 Bankal… Presen… -       -       -      </span></span>
+<span><span class="co">#&gt; 2 2017-12  2017 Aralık 576682514 "Bankal… Inform…  3.96e8 Bankal… Presen… -       -       -      </span></span>
+<span><span class="co">#&gt; 3 2022-09  2022 Eylül  576682514 "Bankal… Inform…  3.96e8 Bankal… Presen… -       -       -      </span></span>
+<span><span class="co">#&gt; 4 2017-12  2017 Aralık 576682514 "Bankal… Inform…  4.20e8 Karşıl… Return… -       -       -      </span></span>
+<span><span class="co">#&gt; 5 2013-09  2013 Eylül  576682514 "Bankal… Inform…  4.20e8 Karşıl… Return… -       -       -      </span></span>
+<span><span class="co">#&gt; 6 2022-09  2022 Eylül  576682514 "Bankal… Inform…  4.20e8 Karşıl… Return… -       -       -      </span></span>
+<span><span class="co">#&gt; 7 2013-09  2013 Eylül  576682514 "Bankal… Inform… -8.38e8 Karşıl… Return… -       -       -      </span></span>
+<span><span class="co">#&gt; 8 2017-12  2017 Aralık 576682514 "Bankal… Inform… -8.38e8 Karşıl… Return… -       -       -      </span></span>
+<span><span class="co">#&gt; 9 2022-09  2022 Eylül  576682514 "Bankal… Inform… -8.38e8 Karşıl… Return… -       -       -      </span></span>
+<span><span class="co">#&gt; # … with 6 more variables: alt_kategori_2_en &lt;chr&gt;, tutar &lt;dbl&gt;, adet &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   tekil_kisi_sayisi &lt;int&gt;, donem_order &lt;int&gt;, unique_key &lt;int&gt;, and abbreviated variable names</span></span>
+<span><span class="co">#&gt; #   ¹​rapor_adi, ²​rapor_adi_en, ³​uk_kategori, ⁴​kategori, ⁵​kategori_en, ⁶​alt_kategori_1,</span></span>
+<span><span class="co">#&gt; #   ⁷​alt_kategori_1_en, ⁸​alt_kategori_2</span></span></code></pre></div>
 </div>
-<div id="financial-tables-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#financial-tables-data" class="anchor"></a>Financial Tables Data</h3>
+<div class="section level3">
+<h3 id="financial-tables-data">Financial Tables Data<a class="anchor" aria-label="anchor" href="#financial-tables-data"></a>
+</h3>
 <p>There are 4 functions in this section.</p>
 <ul>
 <li><p><code><a href="reference/periods_financial.html">periods_financial()</a></code>: Requires no inputs. Returns available periods.</p></li>
 <li><p><code><a href="reference/banks_financial.html">banks_financial()</a></code>: Requires no inputs. Returns bank codes.</p></li>
 <li><p><code><a href="reference/groups_financial.html">groups_financial()</a></code>: Requires no inputs. Returns bank group codes.</p></li>
-<li><p><code><a href="reference/tables_financial.html">tables_financial(bank_code, periods = NULL)</a></code>: Returns table codes.</p></li>
+<li><p><code>tables_financial(bank_code, periods = NULL)</code>: Returns table codes.</p></li>
 <li>
-<p><code><a href="reference/data_financial.html">data_financial(periods, tables, banks = NULL, groups = NULL)</a></code>: Returns financial tables data. At least a bank or bank group must be chosen.</p>
+<p><code>data_financial(periods, tables, banks = NULL, groups = NULL)</code>: Returns financial tables data. At least a bank or bank group must be chosen.</p>
 <ul>
 <li><p><code>periods</code>: Period codes from <code><a href="reference/periods_financial.html">periods_financial()</a></code> <strong>key</strong> column</p></li>
 <li><p><code>tables</code>: Table codes from <code><a href="reference/tables_financial.html">tables_financial()</a></code> <strong>unique_key</strong> column</p></li>
@@ -343,158 +320,172 @@
 </li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">periodsFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/periods_financial.html">periods_financial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 115 x 4</span>
-<span class="co">#&gt;      yil    ay donem_order         key</span>
-<span class="co">#&gt;    &lt;int&gt; &lt;int&gt;       &lt;int&gt;       &lt;int&gt;</span>
-<span class="co">#&gt;  1  1988    12       23868 -2071619944</span>
-<span class="co">#&gt;  2  1989    12       23880 -2071590153</span>
-<span class="co">#&gt;  3  1990    12       23892 -2070934751</span>
-<span class="co">#&gt;  4  1991    12       23904 -2070904960</span>
-<span class="co">#&gt;  5  1992    12       23916 -2070875169</span>
-<span class="co">#&gt;  6  1993     3       23919  1457219190</span>
-<span class="co">#&gt;  7  1993     6       23922  1457219193</span>
-<span class="co">#&gt;  8  1993     9       23925  1457219196</span>
-<span class="co">#&gt;  9  1993    12       23928 -2070845378</span>
-<span class="co">#&gt; 10  1994     3       23931  1457220151</span>
-<span class="co">#&gt; # … with 105 more rows</span>
-
-<span class="op">(</span><span class="va">banksFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/banks_financial.html">banks_financial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 48 x 2</span>
-<span class="co">#&gt;    tr_adi                                  banka_kodu</span>
-<span class="co">#&gt;    &lt;chr&gt;                                        &lt;int&gt;</span>
-<span class="co">#&gt;  1 Türkiye Cumhuriyeti Ziraat Bankası A.Ş.          3</span>
-<span class="co">#&gt;  2 Türkiye Halk Bankası A.Ş.                        5</span>
-<span class="co">#&gt;  3 Türkiye Vakıflar Bankası T.A.O.                  6</span>
-<span class="co">#&gt;  4 Adabank A.Ş.                                     7</span>
-<span class="co">#&gt;  5 Akbank T.A.Ş.                                    8</span>
-<span class="co">#&gt;  6 Alternatifbank A.Ş.                              9</span>
-<span class="co">#&gt;  7 Burgan Bank A.Ş.                                10</span>
-<span class="co">#&gt;  8 Birleşik Fon Bankası A.Ş.                       12</span>
-<span class="co">#&gt;  9 QNB Finansbank A.Ş.                             15</span>
-<span class="co">#&gt; 10 Şekerbank T.A.Ş.                                22</span>
-<span class="co">#&gt; # … with 38 more rows</span>
-
-<span class="op">(</span><span class="va">groupsFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/groups_financial.html">groups_financial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 12 x 5</span>
-<span class="co">#&gt;    aktif grup_no tr_adi                          eng_adi                     ust_grup_no</span>
-<span class="co">#&gt;    &lt;int&gt;   &lt;int&gt; &lt;chr&gt;                           &lt;chr&gt;                             &lt;int&gt;</span>
-<span class="co">#&gt;  1     0       8 "Türkiye´de Şube Açan Yabancı … Foreign Banks Having Branc…           4</span>
-<span class="co">#&gt;  2     1       9 "Kalkınma ve Yatırım Bankaları" Development and Investment…           5</span>
-<span class="co">#&gt;  3     0      10 "Kamusal Sermayeli Kalkınma ve… State-owned Development an…           9</span>
-<span class="co">#&gt;  4     1       5 "Türkiye Bankacılık Sistemi"    The Banking System in Turk…           0</span>
-<span class="co">#&gt;  5     0      12 "Yabancı Sermayeli Kalkınma ve… Foreign Development and In…           9</span>
-<span class="co">#&gt;  6     1       2 "Kamusal Sermayeli Mevduat Ban… State-owned Deposit Banks             1</span>
-<span class="co">#&gt;  7     1       4 "Yabancı Sermayeli Bankalar"    Foreign Banks                         1</span>
-<span class="co">#&gt;  8     0       6 "Türkiye´de Kurulmuş Yabancı S… Foreign Banks Founded in T…           4</span>
-<span class="co">#&gt;  9     1       1 " Mevduat Bankaları"            Deposit Banks                         5</span>
-<span class="co">#&gt; 10     1      13 "Tasarruf Mevduatı Sigorta Fon… Banks Under the Deposit In…           1</span>
-<span class="co">#&gt; 11     1       3 "Özel Sermayeli Mevduat Bankal… Privately-owned Deposit Ba…           1</span>
-<span class="co">#&gt; 12     0      11 "Özel Sermayeli Kalkınma ve Ya… Privately-owned Developmen…           9</span>
-
-<span class="op">(</span><span class="va">tablesFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tables_financial.html">tables_financial</a></span><span class="op">(</span>bank_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 22,795 x 8</span>
-<span class="co">#&gt;    root_tr_adi        tr_adi        root_key parents sort_key    ust_uk birim unique_key</span>
-<span class="co">#&gt;    &lt;chr&gt;              &lt;chr&gt;            &lt;int&gt; &lt;list&gt;  &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;      &lt;int&gt;</span>
-<span class="co">#&gt;  1 ÜÇ-AYLIK HESAP ÖZ… 1. A K T İ F      2004 &lt;int [… 105.100       2004 M              1</span>
-<span class="co">#&gt;  2 ÜÇ-AYLIK HESAP ÖZ… NAKİT DEĞERL…     2004 &lt;int [… 105.100.100      1 M              2</span>
-<span class="co">#&gt;  3 ÜÇ-AYLIK HESAP ÖZ… Kasa              2004 &lt;int [… 105.100.10…      2 M              3</span>
-<span class="co">#&gt;  4 ÜÇ-AYLIK HESAP ÖZ… Efektif Depo…     2004 &lt;int [… 105.100.10…      2 M              4</span>
-<span class="co">#&gt;  5 ÜÇ-AYLIK HESAP ÖZ… Yoldaki Para…     2004 &lt;int [… 105.100.10…      2 M              5</span>
-<span class="co">#&gt;  6 ÜÇ-AYLIK HESAP ÖZ… Satın Alınan…     2004 &lt;int [… 105.100.10…      2 M              6</span>
-<span class="co">#&gt;  7 ÜÇ-AYLIK HESAP ÖZ… BANKALAR          2004 &lt;int [… 105.100.101      1 M              7</span>
-<span class="co">#&gt;  8 ÜÇ-AYLIK HESAP ÖZ… T.C.M.B.          2004 &lt;int [… 105.100.10…      7 M              8</span>
-<span class="co">#&gt;  9 ÜÇ-AYLIK HESAP ÖZ… Vadesiz           2004 &lt;int [… 105.100.10…      8 M              9</span>
-<span class="co">#&gt; 10 ÜÇ-AYLIK HESAP ÖZ… Vadeli            2004 &lt;int [… 105.100.10…      8 M             10</span>
-<span class="co">#&gt; # … with 22,785 more rows</span>
-
-<span class="op">(</span><span class="va">dataFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_financial.html">data_financial</a></span><span class="op">(</span>periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1477300252</span><span class="op">)</span>,
-                                 tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2086</span><span class="op">)</span>,
-                                 banks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 19</span>
-<span class="co">#&gt;   banka_tr_adi   yil    ay tr_adi banka_kodu root_tr_adi  toplam tp_deger yp_deger</span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Türkiye Cum…  2015     9 2. PA…          3 SOLO-BANKA… 2.99e11  1.92e11  1.07e11</span>
-<span class="co">#&gt; # … with 10 more variables: banka_grup &lt;lgl&gt;, donem_key &lt;int&gt;, donem_order &lt;int&gt;,</span>
-<span class="co">#&gt; #   key &lt;chr&gt;, unique_key &lt;int&gt;, root_key &lt;int&gt;, parents &lt;list&gt;, sort_key &lt;chr&gt;,</span>
-<span class="co">#&gt; #   ust_uk &lt;int&gt;, birim &lt;chr&gt;</span>
-
-
-<span class="op">(</span><span class="va">dataFinancial2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_financial.html">data_financial</a></span><span class="op">(</span>periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1477300252</span><span class="op">)</span>,
-                                  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2087</span><span class="op">)</span>,
-                                  groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 22</span>
-<span class="co">#&gt;   banka_tr_adi banka_eng_adi   yil    ay tr_adi banka_kodu root_tr_adi  toplam tp_deger</span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;         &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Mevduat Ban… Deposit Banks  2015     9 1. AK…          1 SOLO-BANKA… 2.16e12  1.31e12</span>
-<span class="co">#&gt; # … with 13 more variables: yp_deger &lt;dbl&gt;, banka_grup &lt;lgl&gt;, donem_key &lt;int&gt;,</span>
-<span class="co">#&gt; #   donem_order &lt;int&gt;, key &lt;chr&gt;, unique_key &lt;int&gt;, aktif &lt;int&gt;, ust_grup_no &lt;int&gt;,</span>
-<span class="co">#&gt; #   root_key &lt;int&gt;, parents &lt;list&gt;, sort_key &lt;chr&gt;, ust_uk &lt;int&gt;, birim &lt;chr&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">periodsFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/periods_financial.html">periods_financial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 124 × 4</span></span>
+<span><span class="co">#&gt;      yil    ay donem_order         key</span></span>
+<span><span class="co">#&gt;    &lt;int&gt; &lt;int&gt;       &lt;int&gt;       &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1  1988    12       23868 -2071619944</span></span>
+<span><span class="co">#&gt;  2  1989    12       23880 -2071590153</span></span>
+<span><span class="co">#&gt;  3  1990    12       23892 -2070934751</span></span>
+<span><span class="co">#&gt;  4  1991    12       23904 -2070904960</span></span>
+<span><span class="co">#&gt;  5  1992    12       23916 -2070875169</span></span>
+<span><span class="co">#&gt;  6  1993     3       23919  1457219190</span></span>
+<span><span class="co">#&gt;  7  1993     6       23922  1457219193</span></span>
+<span><span class="co">#&gt;  8  1993     9       23925  1457219196</span></span>
+<span><span class="co">#&gt;  9  1993    12       23928 -2070845378</span></span>
+<span><span class="co">#&gt; 10  1994     3       23931  1457220151</span></span>
+<span><span class="co">#&gt; # … with 114 more rows</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">banksFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/banks_financial.html">banks_financial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 51 × 2</span></span>
+<span><span class="co">#&gt;    tr_adi                                  banka_kodu</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                                        &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Türkiye Cumhuriyeti Ziraat Bankası A.Ş.          3</span></span>
+<span><span class="co">#&gt;  2 Türkiye Halk Bankası A.Ş.                        5</span></span>
+<span><span class="co">#&gt;  3 Türkiye Vakıflar Bankası T.A.O.                  6</span></span>
+<span><span class="co">#&gt;  4 Adabank A.Ş.                                     7</span></span>
+<span><span class="co">#&gt;  5 Akbank T.A.Ş.                                    8</span></span>
+<span><span class="co">#&gt;  6 Alternatifbank A.Ş.                              9</span></span>
+<span><span class="co">#&gt;  7 Burgan Bank A.Ş.                                10</span></span>
+<span><span class="co">#&gt;  8 Birleşik Fon Bankası A.Ş.                       12</span></span>
+<span><span class="co">#&gt;  9 QNB Finansbank A.Ş.                             15</span></span>
+<span><span class="co">#&gt; 10 Şekerbank T.A.Ş.                                22</span></span>
+<span><span class="co">#&gt; # … with 41 more rows</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">groupsFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/groups_financial.html">groups_financial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 12 × 5</span></span>
+<span><span class="co">#&gt;    aktif grup_no tr_adi                                                 eng_adi           ust_g…¹</span></span>
+<span><span class="co">#&gt;    &lt;int&gt;   &lt;int&gt; &lt;chr&gt;                                                  &lt;chr&gt;               &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1     0       8 "Türkiye´de Şube Açan Yabancı Sermayeli Bankalar"      Foreign Banks Ha…       4</span></span>
+<span><span class="co">#&gt;  2     1       9 "Kalkınma ve Yatırım Bankaları"                        Development and …       5</span></span>
+<span><span class="co">#&gt;  3     0      10 "Kamusal Sermayeli Kalkınma ve Yatırım Bankaları"      State-owned Deve…       9</span></span>
+<span><span class="co">#&gt;  4     1       5 "Türkiye Bankacılık Sistemi"                           The Banking Syst…       0</span></span>
+<span><span class="co">#&gt;  5     0      12 "Yabancı Sermayeli Kalkınma ve Yatırım Bankaları"      Foreign Developm…       9</span></span>
+<span><span class="co">#&gt;  6     1       2 "Kamusal Sermayeli Mevduat Bankaları"                  State-owned Depo…       1</span></span>
+<span><span class="co">#&gt;  7     1       4 "Yabancı Sermayeli Bankalar"                           Foreign Banks           1</span></span>
+<span><span class="co">#&gt;  8     0       6 "Türkiye´de Kurulmuş Yabancı Sermayeli Bankalar"       Foreign Banks Fo…       4</span></span>
+<span><span class="co">#&gt;  9     1       1 " Mevduat Bankaları"                                   Deposit Banks           5</span></span>
+<span><span class="co">#&gt; 10     1      13 "Tasarruf Mevduatı Sigorta Fonuna Devredilen Bankalar" Banks Under the …       1</span></span>
+<span><span class="co">#&gt; 11     1       3 "Özel Sermayeli Mevduat Bankaları"                     Privately-owned …       1</span></span>
+<span><span class="co">#&gt; 12     0      11 "Özel Sermayeli Kalkınma ve Yatırım Bankaları"         Privately-owned …       9</span></span>
+<span><span class="co">#&gt; # … with abbreviated variable name ¹​ust_grup_no</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">tablesFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tables_financial.html">tables_financial</a></span><span class="op">(</span>bank_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 23,073 × 8</span></span>
+<span><span class="co">#&gt;    root_tr_adi                         tr_adi        root_…¹ parents sort_…² ust_uk birim uniqu…³</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                               &lt;chr&gt;           &lt;int&gt; &lt;list&gt;  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " 1. A K T İ F…    2004 &lt;int&gt;   105.100   2004 M           1</span></span>
+<span><span class="co">#&gt;  2 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " NAKİT DEĞERL…    2004 &lt;int&gt;   105.10…      1 M           2</span></span>
+<span><span class="co">#&gt;  3 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " Kasa (3)         2004 &lt;int&gt;   105.10…      2 M           3</span></span>
+<span><span class="co">#&gt;  4 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " Efektif Depo…    2004 &lt;int&gt;   105.10…      2 M           4</span></span>
+<span><span class="co">#&gt;  5 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " Yoldaki Para…    2004 &lt;int&gt;   105.10…      2 M           5</span></span>
+<span><span class="co">#&gt;  6 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " Satın Alınan…    2004 &lt;int&gt;   105.10…      2 M           6</span></span>
+<span><span class="co">#&gt;  7 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " BANKALAR (7)     2004 &lt;int&gt;   105.10…      1 M           7</span></span>
+<span><span class="co">#&gt;  8 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " T.C.M.B. (8)     2004 &lt;int&gt;   105.10…      7 M           8</span></span>
+<span><span class="co">#&gt;  9 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " Vadesiz (9)      2004 &lt;int&gt;   105.10…      8 M           9</span></span>
+<span><span class="co">#&gt; 10 "ÜÇ-AYLIK HESAP ÖZETİ (..-9/2001) " Vadeli (10)      2004 &lt;int&gt;   105.10…      8 M          10</span></span>
+<span><span class="co">#&gt; # … with 23,063 more rows, and abbreviated variable names ¹​root_key, ²​sort_key, ³​unique_key</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">dataFinancial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_financial.html">data_financial</a></span><span class="op">(</span>periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1477300252</span><span class="op">)</span>,</span>
+<span>                                 tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2086</span><span class="op">)</span>,</span>
+<span>                                 banks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 19</span></span>
+<span><span class="co">#&gt;   banka_tr_adi   yil    ay tr_adi banka…¹ root_…²  toplam tp_de…³ yp_de…⁴ banka…⁵ donem…⁶ donem…⁷</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;     &lt;int&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Türkiye Cum…  2015     9 2. PA…       3 "SOLO-… 2.99e11 1.92e11 1.07e11 FALSE    1.48e9   24189</span></span>
+<span><span class="co">#&gt; # … with 7 more variables: key &lt;chr&gt;, unique_key &lt;int&gt;, root_key &lt;int&gt;, parents &lt;list&gt;,</span></span>
+<span><span class="co">#&gt; #   sort_key &lt;chr&gt;, ust_uk &lt;int&gt;, birim &lt;chr&gt;, and abbreviated variable names ¹​banka_kodu,</span></span>
+<span><span class="co">#&gt; #   ²​root_tr_adi, ³​tp_deger, ⁴​yp_deger, ⁵​banka_grup, ⁶​donem_key, ⁷​donem_order</span></span>
+<span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">dataFinancial2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_financial.html">data_financial</a></span><span class="op">(</span>periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1477300252</span><span class="op">)</span>,</span>
+<span>                                  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2087</span><span class="op">)</span>,</span>
+<span>                                  groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 22</span></span>
+<span><span class="co">#&gt;   banka_tr_adi banka…¹   yil    ay tr_adi banka…² root_…³  toplam tp_de…⁴ yp_de…⁵ banka…⁶ donem…⁷</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Mevduat Ban… Deposi…  2015     9 1. AK…       1 "SOLO-… 2.16e12 1.31e12 8.57e11 TRUE     1.48e9</span></span>
+<span><span class="co">#&gt; # … with 10 more variables: donem_order &lt;int&gt;, key &lt;chr&gt;, unique_key &lt;int&gt;, aktif &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   ust_grup_no &lt;int&gt;, root_key &lt;int&gt;, parents &lt;list&gt;, sort_key &lt;chr&gt;, ust_uk &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   birim &lt;chr&gt;, and abbreviated variable names ¹​banka_eng_adi, ²​banka_kodu, ³​root_tr_adi,</span></span>
+<span><span class="co">#&gt; #   ⁴​tp_deger, ⁵​yp_deger, ⁶​banka_grup, ⁷​donem_key</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">dataFinancial3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_financial.html">data_financial</a></span><span class="op">(</span>periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1477300252</span><span class="op">)</span>,
-                                  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2087</span><span class="op">)</span>,
-                                  banks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>,
-                                  groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">#&gt; Error in data_financial(periods = c(1477300252), tables = c(2087), banks = c(3),  : </span>
-<span class="co">#&gt; Cannot select both banks and groups at the same time. I'm working on this and will fix it soon!</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">dataFinancial3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/data_financial.html">data_financial</a></span><span class="op">(</span>periods <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1477300252</span><span class="op">)</span>,</span>
+<span>                                  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2087</span><span class="op">)</span>,</span>
+<span>                                  banks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>,</span>
+<span>                                  groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#&gt; Error in data_financial(periods = c(1477300252), tables = c(2087), banks = c(3),  : </span></span>
+<span><span class="co">#&gt; Cannot select both banks and groups at the same time. I'm working on this and will fix it soon!</span></span></code></pre></div>
 </div>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the tbat project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the tbat project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/emraher/tbat/">https://​github.com/​emraher/​tbat/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/emraher/tbat/issues">https://​github.com/​emraher/​tbat/​issues</a>
-</li>
+<li><a href="https://github.com/emraher/tbat/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/emraher/tbat/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+<li><a href="SUPPORT.html">Getting help</a></li>
 </ul>
 </div>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing tbat</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Emrah Er <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
-<li><a href="https://github.com/emraher/tbat/actions"><img src="https://github.com/emraher/tbat/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://github.com/emraher/tbat/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/emraher/tbat/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Emrah Er.</p>
+  <p></p>
+<p>Developed by Emrah Er.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -502,6 +493,8 @@
 
   
 
+
+  
 
   </body>
 </html>
