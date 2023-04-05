@@ -38,7 +38,8 @@ data_risk <- function(categories = NULL, periods = NULL) {
   riskdata <- httr::POST("https://verisistemi.tbb.org.tr/api/router",
     body = request_body,
     httr::add_headers("LANG" = "tr", "ID" = "null"),
-    httr::accept_json()
+    httr::accept_json(),
+    config = httr::config(ssl_verifypeer = FALSE)
   ) %>%
     httr::content(as = "text") %>%
     jsonlite::fromJSON() %>%

@@ -19,7 +19,6 @@ Get financial tables data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- tables_financial()
 }

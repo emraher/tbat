@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build status](https://github.com/emraher/tbat/workflows/R-CMD-check/badge.svg)](https://github.com/emraher/tbat/actions)
+[![R-CMD-check](https://github.com/emraher/tbat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/emraher/tbat/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `tbat` is to download data from The Banks Association of Turkey webpage. The webpage has a Data Query System but has no public API. `tbat` uses POST requests to download data programmatically.
@@ -28,7 +28,7 @@ The goal of `tbat` is to download data from The Banks Association of Turkey webp
 You can install the development version of tbat from [Github](https://github.com/emraher/tbat) with:
 
 ``` r
-devtool::install_github("emraher/tbat")
+devtools::install_github("emraher/tbat")
 ```
 
 ## Usage
@@ -120,15 +120,8 @@ To check available periods and categories first run `periods_risk()` and/or `cat
 
 (categoriesRisk <- categories_risk())
 
-(dataRisk <- data_risk(categories = c(-285334560, 2008209749, 949943133),
-                       periods = c("2014-08", "2019-12")))
-
-# -------------------------------------------------------------------------- ###
-# Another Example using data from categoriesRisk and periodsRisk
-# -------------------------------------------------------------------------- ###
-
 mycategories <- categoriesRisk %>% 
-  dplyr::filter(uk_rapor == 621177206) %>% 
+  dplyr::filter(uk_rapor == 576682514) %>% 
   dplyr::select(uk_kategori) %>% 
   unlist()
 

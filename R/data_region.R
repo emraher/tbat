@@ -48,7 +48,8 @@ data_region <- function(years = NULL, regions = NULL, parameters = NULL) {
   http_response <- httr::POST(url,
     body = request_body,
     httr::add_headers("LANG" = "tr", "ID" = "null"),
-    httr::accept_json()
+    httr::accept_json(),
+    config = httr::config(ssl_verifypeer = FALSE)
   )
 
   dat <- jsonlite::fromJSON(httr::content(http_response, "text")) %>%

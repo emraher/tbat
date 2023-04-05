@@ -6,9 +6,7 @@
 \alias{tbat-package}
 \title{tbat: Download Data From The Banks Association Of Turkey}
 \description{
-The Banks Association Of Turkey has a Data Query
-    System but has no public API. This package uses POST queries to
-    download data from the webpage.
+The Banks Association Of Turkey has a Data Query System but has no public API. This package uses POST queries to download data from the webpage.
 }
 \seealso{
 Useful links:

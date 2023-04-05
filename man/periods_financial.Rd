@@ -14,7 +14,6 @@ Get periods for financial data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- periods_financial()
 }

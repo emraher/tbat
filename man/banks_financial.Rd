@@ -14,7 +14,6 @@ Get banks info for financial data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- banks_financial()
 }

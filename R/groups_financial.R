@@ -15,7 +15,8 @@ groups_financial <- function() {
   groups <- httr::POST("https://verisistemi.tbb.org.tr/api/router",
     body = '{"route":"bankaGruplari","donemler":[],"maliTablolar":[]}',
     httr::add_headers("LANG" = "tr", "ID" = "null"),
-    httr::accept_json()
+    httr::accept_json(),
+    config = httr::config(ssl_verifypeer = FALSE)
   ) %>%
     httr::content("text") %>%
     jsonlite::fromJSON() %>%

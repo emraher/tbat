@@ -14,7 +14,6 @@ Get parameters and codes for regional data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- params_region()
 }

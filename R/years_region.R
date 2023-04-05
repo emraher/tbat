@@ -19,7 +19,8 @@ years_region <- function() {
   http_response <- httr::POST(url,
     body = req_body,
     httr::add_headers("LANG" = "en", "ID" = "null"),
-    httr::accept_json()
+    httr::accept_json(),
+    config = httr::config(ssl_verifypeer = FALSE)
   )
 
   years <- jsonlite::fromJSON(httr::content(http_response, "text")) %>%

@@ -14,7 +14,6 @@ Get bank groups info for financial data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- groups_financial()
 }

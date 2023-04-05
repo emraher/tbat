@@ -23,7 +23,6 @@ Get financial tables data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- data_financial()
 }

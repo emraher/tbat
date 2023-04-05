@@ -14,7 +14,6 @@ Get parameters and codes for risk data from TBB
 }
 \examples{
 
-
 \dontrun{
 dt <- categories_risk()
 }
