@@ -1,6 +1,6 @@
 Package: tbat
 Title: Download Data From The Banks Association Of Turkey
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Emrah",
            family = "Er",
